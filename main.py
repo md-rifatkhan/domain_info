@@ -1,6 +1,8 @@
 from fastapi import FastAPI
+from mangum import Mangum
 
 app = FastAPI()
+
 
 @app.get("/domain_info/{domain_name}")
 async def read_domain_info(domain_name: str):
@@ -30,3 +32,5 @@ async def read_domain_info(domain_name: str):
     }
 
     return result_dict
+
+handler = Mangum(app)
